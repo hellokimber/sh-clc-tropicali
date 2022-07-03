@@ -25,8 +25,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-
-line-height: 1;
+  line-height: 1;
 }
 
 ol, ul {
@@ -39,7 +38,7 @@ blockquote, q {
 
 blockquote:before, blockquote:after,
 q:before, q:after {
-  content: "";
+  content: '';
   content: none;
 }
 
@@ -63,34 +62,4 @@ input, textarea, select {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: "Jost";
-  src: url(fonts/jost-book.woff2), url(fonts/jost-book.woff);
-}
-body {
-  background-color: #ca774a;
-  color: #ffffff;
-  font-family: "Jost";
-  font-size: 24px;
-  line-height: 1.5;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-section {
-  width: 500px;
-}
-@media (max-width: 600px) {
-  section {
-    width: 300px;
-    font-size: 18px;
-  }
-}
-section p {
-  margin: 24px 0 0 0;
 }
