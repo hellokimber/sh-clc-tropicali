@@ -25,7 +25,8 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-  line-height: 1;
+
+line-height: 1;
 }
 
 ol, ul {
@@ -93,5 +94,3 @@ section {
 section p {
   margin: 24px 0 0 0;
 }
-
-/*# sourceMappingURL=app.css.map */
