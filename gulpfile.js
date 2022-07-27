@@ -1,15 +1,36 @@
 const gulp = require('gulp')
-const sass = require('gulp-sass')(require('sass'))
+
+// css
 const cleanCss = require("gulp-clean-css")
+const postcss = require("gulp-postcss")
 const sourcemaps = require("gulp-sourcemaps")
+const concat = require("gulp-concat")
+
+// browser
 const browserSync = require("browser-sync").create()
+
+// images
 const imagemin = require("gulp-imagemin")
 
-gulp.task("sass", function () {
-    return gulp.src("src/css/app.scss")
+
+gulp.task("css", function () {
+    return gulp.src([
+        "src/css/reset.css",
+        "src/css/typography.css",
+        "src/css/app.css"
+    ])
     .pipe(sourcemaps.init())
-    .pipe(sass())
     .pipe(
+        postcss([
+            require("autoprefixer"),
+            require("postcss-preset-env")({
+                stage: 1,
+                browsers: ["IE 11", "last 2 versions"]
+            })
+        ])
+        )
+        .pipe(concat("app.css"))
+        .pipe(
         cleanCss({
             compatibility: 'ie8'
         })
@@ -45,7 +66,7 @@ gulp.task("watch", function () {
     })
 
     gulp.watch("src/*.html", gulp.series("html")).on("change", browserSync.reload)
-    gulp.watch("src/css/app.scss", gulp.series("sass"))
+    gulp.watch("src/css/*.css", gulp.series("css"))
     gulp.watch("src/fonts/*", gulp.series("fonts"))
     gulp.watch("src/img/*", gulp.series("images"))
 })
@@ -56,4 +77,4 @@ function defaultTask(cb) {
   }
   
 
-exports.default = gulp.parallel(defaultTask, "html", "sass", "fonts", "images", "watch")
+exports.default = gulp.parallel(defaultTask, "html", "css", "fonts", "images", "watch")
